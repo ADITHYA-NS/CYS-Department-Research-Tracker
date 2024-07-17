@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
     const page = await browser.newPage();
 
     // Replace this URL with your actual GitHub Pages URL
-    const url = 'https://adithya-ns.github.io/CYS_RAM_Updated/';
+    const url = 'https://adithya-ns.github.io/CYS-Department-Research-Tracker/';
     try {
         await page.goto(url, { waitUntil: 'networkidle2' });
 
