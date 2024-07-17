@@ -10,8 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,3 +28,18 @@ jobs:
     - run: npm install google-search-results-nodejs@2.1.0
     - run: npm ci
     - run: npm run build --if-present
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        personal_token: ${{ secrets.ACTIONS_DEPLOY_TOKEN }}  # Use the newly created secret
+        publish_dir: './'
+
+    - name: Capture Screenshot
+      run: node screenshot.js
+
+    - name: Upload Screenshot
+      uses: actions/upload-artifact@v3
+      with:
+        name: result-screenshot
+        path: result.png
